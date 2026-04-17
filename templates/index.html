@@ -4,9 +4,21 @@
 {% block content %}
 
 <h1>this is html file</h1>
-<ul>
+
+    {% if current_user.is_authenticated %}
+        <h2>Hello {{ current_user.uname }}</h2>
+    {% else %}
+        <h2>Hello</h2>
+    {% endif %}
+
+    <a href="{{ url_for('login') }}">Login Here</a>
+    <a href="{{ url_for('sign_up') }}">Sign Up</a>
+    <a href="{{ url_for('logout') }}">LogOut</a>
+    <a href="{{ url_for('secret') }}">Secrets</a>
+
+<!-- <ul>
     {% for person in people %}
-    <li>{{ person }}<button onclick="deletePerson({{ person.pid }})">Delete</button></li>
+    <li>{{ person }}<button onclick="deletePerson({{ person.pid }})">Delete</button><a href="{{url_for('details',pid=person.pid)}}">Details</a></li>
     {% endfor %}
 </ul>
 
@@ -32,6 +44,6 @@
             console.error("Error during fetching:", error)
         })
     }
-</script>
+</script> -->
 
 {% endblock %}
